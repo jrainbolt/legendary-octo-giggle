@@ -1,0 +1,65 @@
+
+vector<string> teamRoster;
+ 
+// Adding player names
+teamRoster.push_back("Mike");
+teamRoster.push_back("Scottie");
+teamRoster.push_back("Toni");
+
+cout << "Current roster: " << endl;
+ 
+for (string playerName : teamRoster) {
+   cout << playerName << endl;
+}
+
+
+/*Modifying vector using range-based for loop
+To modify a vector's elements using a range-based for loop, a programmer must declare the for loop's variable as a reference. The reference variable will refer to each vector element as the for loop iterates through the vector elements. Assigning the reference variable with a new value assigns the corresponding vector's element with that value. In the code example below, gradeVal will refer to each vector element, so the statement gradeVal = userGrade; assigns the vector elements with userGrade.*/
+
+
+
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main() {
+   vector<double> examGrades(4); // User's exam grades
+   double averageGrade;
+   
+   // Prompt user for exam grades
+   for (double &gradeVal : examGrades) {
+      double userGrade;
+      
+      cin >> userGrade;
+      gradeVal = userGrade;
+   }
+   
+   averageGrade = 0.0;
+   for (double gradeVal : examGrades) {
+      averageGrade += gradeVal;
+   }
+   averageGrade = averageGrade / examGrades.size();
+   
+   cout << "Average grade: " << averageGrade << endl;
+   
+   return 0;
+}
+
+
+
+
+/*Range-based for loop with auto
+Programmers commonly use the auto type specifier to declare a range-based for loop's variable. In the code example below, the compiler determines gradeVal is of type double because the elements of the vector examGrades are of type double.
+
+Figure 14.1.3: Range-based for loop with auto.*/
+
+vector<double> examGrades;
+double averageGrade;
+
+...
+
+averageGrade = 0.0;
+for (auto gradeVal : examGrades) {
+   averageGrade += gradeVal;
+}
+averageGrade = averageGrade / examGrades.size();
