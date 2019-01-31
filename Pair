@@ -1,0 +1,34 @@
+/*
+The pair class
+The pair class in the C++ Standard Template Library defines a container that consists of two data elements. #include <utility> enables use of the pair class. Many STL container classes internally use or return pair objects. Ex: a map contains key-value pairs.
+
+The pair type is an ADT implemented as a templated class (discussed elsewhere) that supports different types values. A pair can be declared as pair<F, S> newPair; where F represents the pair's first element type and S represents the pair's second element type. Ex:  pair<int, string> newPair; declares a pair with an integer first element and a string second element.
+
+The make_pair() function creates a pair with the specified first and second values, with which a pair variable can be assigned. Each element in a pair can be accessed and modified using the pair's first and second members.
+
+Figure 14.3.1: Creating a pair and accessing the pair's elements.*/
+
+
+#include <iostream>
+#include <string>
+#include <utility>
+
+using namespace std;
+
+int main() {
+   pair<string, int> caPair;
+   
+   // 2013 population data from census.gov
+   caPair = make_pair("California", 38332521);
+   
+   cout << "Population of " << caPair.first << " in 2013 was "
+        << caPair.second << "." << endl ;
+   
+   // 2010 population data from census.gov
+   caPair.second = 37253965;
+   
+   cout << "Population of " << caPair.first << " in 2010 was "
+        << caPair.second << "." << endl ;
+   
+   return 0;
+}
