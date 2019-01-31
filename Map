@@ -1,0 +1,38 @@
+/*zyDE 14.4.1: Use count() to check if the map contains the use specified key.
+This program uses a map to associate a race distance in kilometers with a runner's race time. If a race distance does not exist, the program throws an exception. Modify the program to use the count() function to check if the runner has run a race of the specified distance, and display a message of "No race of the specified distance exists."*/
+
+#include <iostream>
+#include <map>
+#include <string>
+
+using namespace std;
+
+int main () {
+   map<int, double> raceTimes;
+   int userDistKm;
+      
+   raceTimes.emplace(5, 23.14);
+   raceTimes.emplace(15, 78.5);
+   raceTimes.emplace(25, 120.75);
+      
+   cout << "Enter race distance in km (0 to exit): " << endl;
+   cin >> userDistKm;
+
+   while(userDistKm != 0) {
+      if (raceTimes.count(userDistKm)){
+      cout << "Best time for " << userDistKm << " km race is: "
+           << raceTimes.at(userDistKm)
+           << " minutes." << endl << endl;
+         
+      cout << "Enter race distance in km (0 to exit): " << endl;
+      cin >> userDistKm;
+      }
+      else{
+      cout << "No race of the specified distance exists" << endl;
+      cin >> userDistKm;
+      }
+      
+   }
+
+   return 0;
+}
