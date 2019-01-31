@@ -1,0 +1,57 @@
+/*insert() and erase() functions
+The insert() function does not add duplicate elements to a set. If a programmer tries to add a duplicate element, the insert() function returns a pair object containing an iterator at the existing element's location and false. Otherwise, insert() returns a pair object with an iterator at the added element location and true.
+
+The erase() function only removes elements that exist within the set. If the element exists, the erase() function removes the element and returns 1. Otherwise, erase() returns 0.*/
+
+/*zyDE 14.5.1: Use only erase() to check if the user's guess is in the set.
+The program below uses a set to store the numbers a user has to guess to win. The program uses both count() and erase() to remove correct guesses from the set, and the game ends when user guesses all numbers (i.e., the set is empty). Modify the program to only use erase(), and not count(). Hint: consider the return value of erase().*/
+
+#include <iostream>
+#include <set>
+#include <string>
+
+using namespace std;
+
+int main() {
+   set<int> numbersToGuess;
+   int userGuess;
+      
+   numbersToGuess.insert(3);
+   numbersToGuess.insert(5);
+   numbersToGuess.insert(1);
+      
+   cout << "Enter a number between 1 to 10 (0 to exit): ";
+   cin >> userGuess;
+      
+   while (userGuess != 0) {
+      // Check user's guess
+      if (numbersToGuess.erase(userGuess)) {
+         //numbersToGuess.erase(userGuess);
+            cout << "Good guess! " << numbersToGuess.size() 
+              << " number(s) remaining." << endl << endl;
+      }
+      else {
+         cout << "Incorrect guess. " << numbersToGuess.size() 
+              << " number(s) remaining." << endl << endl;
+      }
+         
+      // Exit if no numbers are left, otherwise ask again
+      if (numbersToGuess.size() == 0) {
+         break;
+      }
+      else {
+         cout << "Enter a number between 1 to 10 (0 to exit): ";
+         cin >> userGuess;
+      }
+   }
+      
+   // Print victory/failure message
+   if (userGuess != 0) {
+      cout << "You won!" << endl;
+   }
+   else {
+      cout << "Quitters always lose!" << endl;
+   }
+
+   return 0;
+}
